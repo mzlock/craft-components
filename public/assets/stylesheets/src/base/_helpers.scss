@@ -1,0 +1,58 @@
+@mixin ui-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin image-replace {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+
+@mixin generated-content( $width, $height, $position: absolute, $display: block ) {
+    content: "";
+    display: $display;
+    height: $height;
+    position: $position;
+    width: $width;
+}
+
+@mixin clear {
+  zoom: 1;
+
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+    
+  &:after {
+    clear: both
+  }
+}
+
+@mixin visuallyhidden {
+  border: 0; 
+  clip: rect(0 0 0 0); 
+  height: 1px;
+  margin: -1px; 
+  overflow: hidden; 
+  padding: 0; 
+  position: absolute;
+  width: 1px !important;
+}
+
+@mixin not-visuallyhidden {
+  clip: auto; 
+  height: auto;
+  margin: 0; 
+  overflow: visible; 
+  padding: 0; 
+  position: static; 
+  width: auto !important;
+}
+
+.visuallyhidden {
+  @include visuallyhidden;
+}

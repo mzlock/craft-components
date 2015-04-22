@@ -1,0 +1,78 @@
+$copy--default: 'Helvetica Nueue', Helvetica, Arial, sans-serif;
+$lineheight--default: (26/16);
+
+
+@mixin heading--large {
+  color: $theme--primary;
+  font-size: 1.6em;
+  font-weight: normal;
+  line-height: 1.2;
+  text-align: center;
+
+  @include breakpoint($bp--medium) {
+    font-size: 2.2em;
+  }
+}
+
+@mixin heading--medium {
+  color: $theme--copy;
+  font-size: 1.3em;
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@mixin heading--small {
+  color: $theme--heading;
+  font-size: $theme--copy--size + 2;
+  font-weight: normal;
+  letter-spacing: 1px;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+body {
+  @include font-smoothing(antialiased);
+  color: $theme--copy;
+  font-family: $copy--default;
+  font-size: $theme--copy--size;
+  line-height: $lineheight--default;
+
+  @include breakpoint($bp--medium) {
+    font-size: $theme--copy--size--large;
+  }
+}
+
+
+// Reset all headers - use classes for styling
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: $theme--copy--size;
+  font-weight: normal;
+
+  @include breakpoint($bp--medium) {
+    font-size: $theme--copy--size--large;
+  }
+}
+
+
+.heading--small {
+  @include heading--small;
+}
+
+.heading--medium {
+  @include heading--medium;
+}
+
+.heading--large {
+  @include heading--large;
+}
+
+.tagline {
+  font-size: $theme--copy--size;
+  font-style: italic;
+}

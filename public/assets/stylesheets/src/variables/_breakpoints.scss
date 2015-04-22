@@ -1,0 +1,15 @@
+$bp--narrow: 480px;
+$bp--narrow-max: max-width $bp--narrow - 1;
+$bp--medium: 720px;
+$bp--medium-max: max-width $bp--medium - 1;
+$bp--large: 960px;
+$bp--large-max: max-width $bp--large - 1;
+$bp--super: 1200px;
+$bp--super-max: max-width $bp--super - 1;
+$bp--retina: min-resolution 1.5dppx;
+$bp--short: max-height 640px;
+$bp--not-short: min-height 640px;
+
+$default-wrapper-width: 1000px;
+$max-site-width: $bp--super;
+$min-site-width: 310px;

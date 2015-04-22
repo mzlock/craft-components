@@ -1,0 +1,68 @@
+@mixin font-smoothing($font-smoothing) {
+  // none | antialiased | subpixel-antialiased
+  -webkit-font-smoothing: $font-smoothing;
+  -moz-font-smoothing: $font-smoothing;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-font-smoothing: $font-smoothing;
+  font-smoothing: $font-smoothing;
+}
+
+@mixin font-face($name, $filename, $style: normal, $weight: normal) {
+  @font-face {
+    font-family: "#{$name}";
+    font-style: $style;
+    font-weight: $weight;
+    src: font-url("#{$filename}.eot");
+    src: font-url("#{$filename}.eot?#iefix") format("embedded-opentype"),
+       font-url("#{$filename}.woff") format("woff"),
+       font-url("#{$filename}.ttf") format("truetype"),
+       font-url("#{$filename}.svg##{$name}") format('svg');
+  }
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}
+  &:input-placeholder          {@content}
+}
+
+@mixin two-col {
+  float: left;
+  width: 50%;
+
+  &:nth-child(1n) {
+    clear: none;
+  }
+
+  &:nth-child(odd) {
+    clear: both;
+  }
+}
+
+@mixin three-col {
+  float: left;
+  width: 33.3%;
+
+  &:nth-child(1n) {
+    clear: none;
+  }
+
+  &:nth-child(3n+1) {
+    clear: both;
+  }
+}
+
+@mixin four-col {
+  float: left;
+  width: 25%;
+
+  &:nth-child(1n) {
+    clear: none;
+  }
+
+  &:nth-child(4n+1) {
+    clear: both;
+  }
+}

@@ -1,0 +1,35 @@
+.global-header {
+  background: $color--gray-12;
+  padding: $gutter--small/2 0;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .logo {
+    float: left;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 0;
+    text-decoration: none;
+  }
+}
+
+.main-nav {
+  float: right;
+}
+
+.main-nav__list {
+  @include ui-list;
+  padding: $gutter--small/2 0;
+
+  li {
+    display: inline-block;
+    margin-left: $gutter;
+  }
+}

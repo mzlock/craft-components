@@ -1,0 +1,9 @@
+.global-footer {
+  background: $color--gray-13;
+  color: $color--gray-5;
+  padding: $gutter--small/2 0;
+
+  p {
+    margin: 0;
+  }
+}
