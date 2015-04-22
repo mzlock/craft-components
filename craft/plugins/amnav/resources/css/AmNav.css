@@ -1,0 +1,37 @@
+.visuallyhidden {
+    display: none !important;
+}
+
+.amnav__builder .hidden {
+    display: list-item !important;
+}
+
+.amnav .amnav__parent {
+    margin: 24px 0;
+}
+
+.amnav .amnav__blank {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: url(../img/blank.png);
+}
+
+.amnav__builder .icon {
+    margin: 5px 5px 0 0;
+    opacity: 0;
+    -webkit-transition: opacity linear 100ms;
+    -moz-transition: opacity linear 100ms;
+}
+
+.amnav__builder .icon.settings {
+    display: inline-block;
+}
+
+.amnav__builder .icon.settings:before {
+	color: rgba(0, 0, 0, 0.2);
+}
+
+.amnav__builder .icon.settings:hover:before {
+	color: #0d78f2;
+}

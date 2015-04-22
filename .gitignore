@@ -1,0 +1,15 @@
+.DS_Store
+.ruby-version
+.rvmrc
+.sass-cache
+config/database.yml
+craft/config/db.php
+tmp/
+node_modules/
+craft/storage/userphotos
+craft/storage/runtime/*
+public/assets/stylesheets/application.css
+public/assets/stylesheets/ie.css
+public/assets/javascripts/browserified.js.map
+public/uploads
+public/uploads.zip

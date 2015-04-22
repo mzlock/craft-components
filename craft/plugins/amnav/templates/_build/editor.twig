@@ -1,0 +1,48 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.textField({
+    id: 'name',
+    name: 'name',
+    label: "Name"|t,
+    value: page.name,
+    instructions: 'Name of this page in the menu.'|t
+}) }}
+
+{% if not page.entryId|length %}
+	{{ forms.textField({
+	    id: 'url',
+	    name: 'url',
+	    label: "URL"|t,
+	    value: page.url,
+	    instructions: 'The URL of this page.'|t
+	}) }}
+{% else %}
+    {% set entry = craft.entries.id(page.entryId).first() %}
+
+    {% if entry %}
+        <div class="field">
+            <div class="heading">
+                <label>{{ 'Linked to'|t }}</label>
+                <div class="instructions">
+                    <p>{{ entry.title }}<br>{{ 'URI'|t }}: {{ entry.uri }}<br><a href="{{ entry.cpEditUrl }}" target="_blank">{{ 'Edit'|t }}</a></p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+
+{{ forms.lightswitchField({
+    id:           'enabled',
+    name:         'enabled',
+    label:        'Enabled'|t,
+    on:           page.enabled,
+    instructions: 'Display in menu.'|t
+}) }}
+
+{{ forms.lightswitchField({
+    id:           'blank',
+    name:         'blank',
+    label:        'New window'|t,
+    on:           page.blank,
+    instructions: 'Whether to open this page in a new window.'|t
+}) }}
