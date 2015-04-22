@@ -1,26 +1,15 @@
-{% set defaultOptions = {
-  quoteText: '',
-  quoteAttribution: ''
-} %}
-
-{% set options    = options is defined ? defaultOptions | merge(options) : defaultOptions %}
-{% set options = options|merge({
-  'quoteText'       : block['quoteText'] is defined ? block.quoteText : options.quoteText,
-  'quoteAttribution': block['quoteAttribution'] is defined ? block.quoteAttribution : options.quoteAttribution,
-}) %}
-
-{% if options.quoteText %}
+{% if block.quoteText %}
   <section class="module quote">
     <blockquote>
       <div class="quote__body">
         <div class="wrapper -padded">
-          {{ options.quoteText }}
+          {{ block.quoteText }}
         </div>
       </div>
 
-      {% if options.quoteAttribution | length  %}
+      {% if block.quoteAttribution | length  %}
         <div class="wrapper -padded">
-          <cite class="quote__attribution">{{ options.quoteAttribution }}</cite>
+          <cite class="quote__attribution">{{ block.quoteAttribution }}</cite>
         </div>
       {% endif %}
 

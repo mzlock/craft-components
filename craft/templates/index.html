@@ -4,9 +4,7 @@
   <article>
     {% include 'modules/_hero-image' with { block: entry } %}
 
-    {% include 'modules/_related-links' with { options: {
-      linksList: entry.relatedLinksList
-    }} %}
+    {% include 'modules/_related-links' with { block: entry } %}
 
   </article>
 {% endblock %}

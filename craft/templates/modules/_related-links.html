@@ -1,23 +1,11 @@
-{% set defaultOptions = {
-  headingLevel: 2,
-  headline: 'Related Links',
-  linksList: {}
-} %}
-
-{% set options    = options is defined ? defaultOptions | merge(options) : defaultOptions %}
-{% set options = options|merge({
-  'headingLevel': headingLevel | default(options.headingLevel),
-  'headline'    : block['relatedLinksHeading'] is defined ? block.relatedLinksHeading : options.headline,
-  'linksList'   : block['relatedLinksList'] is defined ? block.relatedLinksList : options.linksList
-}) %}
-
+{% set headingLevel = headingLevel | default(2) %}
 
 <section class="module related-links">
   <div class="wrapper -full">
-    <h{{ options.headingLevel }} class="module__title heading--medium">{{ options.headline }}</h{{ options.headingLevel }}>
+    <h{{ headingLevel }} class="module__title heading--medium">Related Links</h{{ headingLevel }}>
 
     <ul class="related-links__list">
-      {% for link in options.linksList %}
+      {% for link in block.relatedLinksList %}
         <li>
           <a href="{{ link.linkUrl }}">{{ link.linkText }}</a>
         </li>

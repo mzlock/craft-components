@@ -13,9 +13,7 @@
       </time>
       {{ entry.body }}
     {% endset %}
-    {% include 'modules/_body-copy' with { options: {
-      bodyCopy: bodyCopy
-    }} %}
+    {% include 'modules/_body-copy' with { bodyCopy: bodyCopy } %}
 
     {% include 'modules/_matrix' %}
     

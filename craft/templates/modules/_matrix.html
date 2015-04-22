@@ -4,9 +4,7 @@
   {# Start Matrix blocks #}
   {% switch block.type %}
     {% case "body" %}
-      {% include 'modules/_body-copy' with { options: {
-        bodyCopy: block.bodyCopy
-      }} %}
+      {% include 'modules/_body-copy' with { bodyCopy: block.bodyCopy } %}
 
     {% case "contentFeatureImage" %}
       {% include 'modules/_content-feature-image' %}
