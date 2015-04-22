@@ -1,12 +1,18 @@
 {% extends "_layout" %}
 {% set title = entry.title %}
-{% set params = { descendantOf: entry } %}
 
 {% block content %}
-  <article>
-    {% include 'components/_page-header' with { options: { 
-      title: title
-    } } %}
+  <article class="matrix-page">
+    {%- cache unless craft.config.devMode -%}
 
+      {% if not (entry.matrix | length and entry.matrix.first.type == 'heroImage') %}
+        {% include 'components/_page-header' with { options: {
+          title: entry.title
+        }} %}
+      {% endif %}
+
+      {% include 'modules/_matrix' %}
+
+    {%- endcache -%}
   </article>
 {% endblock %}

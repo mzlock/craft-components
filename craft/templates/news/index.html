@@ -3,8 +3,37 @@
 {% set params = { section: 'news', limit: 5 } %}
 
 {% block content %}
-  {%- cache unless craft.config.devMode -%}
-    {% set entries = craft.entries(params) %}
-    {% include 'page-types/_index-page' %}
-  {%- endcache -%}
+  {% set entries = craft.entries(params) %}
+  {% include 'components/_page-header' with { options: { 
+    title: title
+  } } %}
+  
+  {% paginate entries as pagedEntries %}
+    <section class="module index">
+      <div class="wrapper -padded">
+
+        <ul class="index__list">
+          {% for entry in pagedEntries %}
+            
+            <li>
+              <h2 class="index__list__heading heading heading--medium">
+                <a href="{{ entry.url }}">
+                  {{ entry.title }}
+                </a>
+              </h2>
+              <time class="index__list__date" datetime="{{ entry.postDate.format('Y-m-d') }}">
+                <span class="visuallyhidden">Posted </span>{{ entry.postDate.format('F d, Y') }}
+              </time>
+              <p>{{ entry.body | truncate('words', '30', '...', true) }}</p>
+              <img class="index__list__image" src="{{ entry.featuredImage.first.getUrl('square') }}" alt="">
+            </li>
+
+          {% endfor %}
+        </ul>
+
+      </div>
+    </section>
+
+    {% include 'components/_pagination' %}
+  {% endpaginate %}
 {% endblock %}
