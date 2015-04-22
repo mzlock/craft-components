@@ -2,9 +2,29 @@
 
 {% block content %}
   <article>
-    {% include 'modules/_hero-image' with { block: entry } %}
+    <section 
+      class="module hero" 
+      style="background-image: url('{{ entry.heroBgImage.first().getURL('hero') }}'); background-position: {{ entry.heroImageAlign }} top;" >
+      <div class="wrapper -padded">
+        <div class="hero__text-wrap">
+          <h1 class="heading--large--hero">{{ entry.heroHeadline }}</h1>
+        </div>
+      </div>
+    </section>
 
-    {% include 'modules/_related-links' with { block: entry } %}
+    <section class="module related-links">
+      <div class="wrapper -full">
+        <h2 class="module__title heading--medium">Related Links</h2>
+
+        <ul class="related-links__list">
+          {% for link in entry.relatedLinksList %}
+            <li>
+              <a href="{{ link.linkUrl }}">{{ link.linkText }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
 
   </article>
 {% endblock %}

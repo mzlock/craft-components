@@ -7,13 +7,14 @@
       title: title
     } } %}
     
-    {% set bodyCopy %}
-      <time class="" datetime="{{ entry.postDate.format('Y-m-d') }}">
-        <span class="visuallyhidden">Posted </span>{{ entry.postDate.format('F d, Y') }}
-      </time>
-      {{ entry.body }}
-    {% endset %}
-    {% include 'modules/_body-copy' with { bodyCopy: bodyCopy } %}
+    <section class="module body-copy">
+      <div class="wrapper -padded">
+        <time class="" datetime="{{ entry.postDate.format('Y-m-d') }}">
+          <span class="visuallyhidden">Posted </span>{{ entry.postDate.format('F d, Y') }}
+        </time>
+        {{ entry.body }}
+      </div>
+    </section>
 
     {% include 'modules/_matrix' %}
     

@@ -1,22 +1,84 @@
 {% set matrix = matrix | default(entry.matrix) %}
+{% set headingLevel = headingLevel | default(2) %}
 
 {% for block in matrix %}
   {# Start Matrix blocks #}
   {% switch block.type %}
     {% case "body" %}
-      {% include 'modules/_body-copy' with { bodyCopy: block.bodyCopy } %}
+      <section class="module body-copy">
+        <div class="wrapper -padded">
+          {{ block.bodyCopy }}
+        </div>
+      </section>
 
     {% case "contentFeatureImage" %}
-      {% include 'modules/_content-feature-image' %}
+      <section class="module content-feature">
+        {% if block.contentFeatureHeadline | length %}
+          <div class="wrapper -padded">
+            <h{{ headingLevel }} class="module__title heading--medium">{{ block.contentFeatureHeadline }}</h{{ headingLevel }}>
+          </div>
+        {% endif %}
+
+        {% set imageUrl = block.contentFeatureImage.first.getUrl() %}
+        {% set imageAlt = block.contentFeatureImage.first.getTitle() %}
+        <div class="wrapper -wide">  
+          <img 
+            src="{{ imageUrl }}" 
+            alt="{{ imageAlt }}">
+        </div>
+
+        <div class="wrapper -padded">
+          <div class="body-copy">
+            {{ block.contentFeatureDescription }}
+          </div>
+        </div>
+      </section>
 
     {% case "heroImage" %}
-      {% include 'modules/_hero-image' %}
+      <section 
+        class="module hero" 
+        style="background-image: url('{{ block.heroBgImage.first().getURL('hero') }}'); background-position: {{ block.heroImageAlign }} top;" >
+        <div class="wrapper -padded">
+          <div class="hero__text-wrap">
+            <h1 class="heading--large--hero">{{ block.heroHeadline }}</h1>
+          </div>
+        </div>
+      </section>
 
     {% case "quote" %}
-      {% include 'modules/_quote' %}
+      {% if block.quoteText %}
+        <section class="module quote">
+          <blockquote>
+            <div class="quote__body">
+              <div class="wrapper -padded">
+                {{ block.quoteText }}
+              </div>
+            </div>
+
+            {% if block.quoteAttribution | length  %}
+              <div class="wrapper -padded">
+                <cite class="quote__attribution">{{ block.quoteAttribution }}</cite>
+              </div>
+            {% endif %}
+
+          </blockquote>
+        </section>
+      {% endif %}
 
     {% case "relatedLinks" %}
-      {% include 'modules/_related-links' with { block: block } %}
+      <section class="module related-links">
+        <div class="wrapper -full">
+          <h{{ headingLevel }} class="module__title heading--medium">Related Links</h{{ headingLevel }}>
+
+          <ul class="related-links__list">
+            {% for link in block.relatedLinksList %}
+              <li>
+                <a href="{{ link.linkUrl }}">{{ link.linkText }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
 
   {% endswitch %}
 
