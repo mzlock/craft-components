@@ -1,0 +1,11 @@
+{% set defaultOptions = {
+  title: '',
+  hide : false
+} %}
+{% set options = defaultOptions | merge(options) %}
+
+<header class="page-header{% if options.hide %} visuallyhidden{% endif %}">
+  <div class="wrapper -padded">
+    <h1 class="heading heading--large">{{ options.title }}</h1>
+  </div>
+</header>

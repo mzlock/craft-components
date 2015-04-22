@@ -1,0 +1,72 @@
+.button {
+  background: transparent;
+  border-color: $theme--links;
+  border-style: solid;
+  border-width: 3px;
+  color: $theme--links;
+  display: inline-block;
+  font-size: $theme--copy--size - 2;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 1;
+  padding: $gutter/2 $gutter;
+  text-align: center;
+  text-transform: uppercase;
+
+  &:hover,
+  &:focus {
+    background: $theme--links;
+    color: #fff;
+  }
+
+  &:active {
+    background: $theme--links--hover;
+    border-color: $theme--links--hover;
+    color: #fff;
+  }
+
+
+  &.-block {
+    display: block;
+  }
+
+  &.-short {
+    padding: $gutter/3 $gutter;
+  }
+
+  &.-small {
+    font-size: $theme--copy--size - 4;
+    letter-spacing: 0.8px;
+    padding: $gutter/3 $gutter/2;
+  }
+
+  &.-large {
+    font-size: $theme--copy--size + 4;
+    padding: $gutter/2 $gutter*2;
+  }
+
+  &.-solid {
+    background: $theme--links;
+    color: $theme--copy--light;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: $theme--links--hover;
+      border-color: $theme--links--hover;
+    }
+  }
+}
+
+
+@include breakpoint($bp--medium) {
+  .button {
+    font-size: $theme--copy--size + 2;
+    letter-spacing: 2px;
+
+    &.-small {
+      font-size: $theme--copy--size - 3;
+      letter-spacing: 1.2px;
+    }
+  }
+}

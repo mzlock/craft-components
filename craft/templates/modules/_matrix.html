@@ -1,0 +1,25 @@
+{% set matrix = matrix | default(entry.matrix) %}
+
+{% for block in matrix %}
+  {# Start Matrix blocks #}
+  {% switch block.type %}
+    {% case "body" %}
+      {% include 'modules/_body-copy' with { options: {
+        bodyCopy: block.bodyCopy
+      }} %}
+
+    {% case "contentFeatureImage" %}
+      {% include 'modules/_content-feature-image' %}
+
+    {% case "heroImage" %}
+      {% include 'modules/_hero-image' %}
+
+    {% case "quote" %}
+      {% include 'modules/_quote' %}
+
+    {% case "relatedLinks" %}
+      {% include 'modules/_related-links' with { block: block } %}
+
+  {% endswitch %}
+
+{% endfor %}

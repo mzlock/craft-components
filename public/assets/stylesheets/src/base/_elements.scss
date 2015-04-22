@@ -7,6 +7,15 @@ button {
   }
 }
 
+abbr[title] {
+  border-bottom: none;
+}
+
+blockquote {
+  line-height: 1.4em;
+  margin: 0;
+}
+
 img {
   height: auto;
   max-width: 100%;
@@ -34,4 +43,11 @@ button {
   background: transparent;
   border: 0;
   padding: 0;
+}
+
+time {
+  display: block;
+  font-style: italic;
+  font-size: 0.9em;
+  margin-bottom: $gutter--small/2;
 }

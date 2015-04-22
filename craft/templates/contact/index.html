@@ -1,0 +1,122 @@
+{% extends "_layout" %}
+{% set title = "Contact Us" %}
+
+{% set success = craft.request.getParam('success') %}
+
+{% if form is defined %}
+  {% set errors = form.getErrors() %}
+{% endif %}
+
+
+{% block content %}
+  <article>
+    {% include 'components/_page-header' with { options: { 
+      title: title
+    }} %}
+
+    {% import 'components/forms/_form-macros' as fieldElements %}
+
+    <form class="form">
+      <div class="wrapper -padded -thin">
+
+        {% if success is defined and success == true %}
+          {% set bodyCopy %}
+            <h2 class="heading--large">Thank you!</h2>
+            <p>We'll get back to you as soon as we can.</p>
+          {% endset %}
+          {% include 'modules/_body-copy' with { options: {
+            bodyCopy: bodyCopy
+          }} %}
+        {% else %}
+
+          {% if errors is defined and errors | length %}
+            {{ fieldElements.errors() }}
+          {% endif %}
+
+          <section class="form__section">
+            <ul class="form__list">
+              {{ fieldElements.input({
+                id: 'name', 
+                label: 'Full Name', 
+                required: true, 
+                value: form is defined ? form.name : '',
+                error: nameError is defined ? nameError : ''
+              }) }}
+
+              {{ fieldElements.input({
+                id: 'address-one',
+                label: 'Street Address<span class="visuallyhidden"> (Line 1)</span>',
+                required: true,
+                value: form is defined ? form.addressOne : '',
+                error: addressOneError is defined ? addressOneError : '',
+                noMargin: true
+              }) }}
+
+              {{ fieldElements.input({
+                id: 'address-two',
+                label: 'Street Address (Line 2)',
+                value: form is defined ? form.addressTwo : '',
+                noMargin: true,
+                hideLabel: true
+              }) }}
+
+              {{ fieldElements.input({
+                id: 'city',
+                label: 'City',
+                required: true,
+                value: form is defined ? form.city : '',
+                error: cityError is defined ? cityError : '',
+                noMargin: true
+              }) }}
+
+              {{ fieldElements.select({
+                id: 'state',
+                label: 'State',
+                options: ["Maryland", "Virginia", "Washington, DC"],
+                required: true,
+                value: form is defined ? form.state : '',
+                noMargin: true
+              }) }}
+
+              {{ fieldElements.input({
+                id: 'zipcode',
+                label: 'Zip Code',
+                required: true,
+                value: form is defined ? form.zipcode : '',
+                error: zipcodeError is defined ? zipcodeError : ''
+              }) }}
+
+              {{ fieldElements.input({
+                id: 'email',
+                label: 'Email Address',
+                required: true,
+                value: form is defined ? form.email : '',
+                error: emailError is defined ? emailError : '',
+                type: 'email'
+              }) }}
+
+              {{ fieldElements.input({
+                id: 'phone',
+                label: 'Phone Number',
+                required: true,
+                value: form is defined ? form.phone : '',
+                error: phoneError is defined ? phoneError : '',
+                type: 'tel'
+              }) }}
+
+              {{ fieldElements.textarea({
+                id: 'info',
+                label: 'Information',
+                value: form is defined ? form.info : '',
+                noMargin: true
+              }) }}
+            </ul>
+          </section>
+
+          {{ fieldElements.submit() }}
+
+        {% endif %}
+      </div>
+    </form>
+  </article>
+{% endblock %}

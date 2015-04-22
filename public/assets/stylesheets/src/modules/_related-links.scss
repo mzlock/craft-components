@@ -1,0 +1,44 @@
+.module.related-links {
+  padding-bottom: $gutter*2;
+
+  .wrapper {
+    padding-bottom: $gutter--large;
+    padding-top: $gutter--large;
+  }
+
+  .related-links__list {
+    @include ui-list;
+    @include clear;
+    padding-right: $gutter--small;
+
+    li {
+      padding-left: $gutter--small;
+
+      a {
+        border-bottom: 1px solid $theme--copy;
+        display: block;
+        padding: $gutter/2 0;
+      }
+    }
+  }
+
+  @include breakpoint($bp--medium) {
+    .related-links__list {
+      padding-right: $gutter;
+
+      li {
+        padding-left: $gutter;
+      }
+    }
+  }
+
+
+  @include breakpoint($bp--large) {
+    .related-links__list {
+
+      li {
+        @include two-col;
+      }
+    }
+  }
+}

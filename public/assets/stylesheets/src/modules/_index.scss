@@ -1,0 +1,23 @@
+.module.index {
+  padding: $gutter*2 0;
+}
+
+.index__list {
+  @include ui-list;
+
+  li {
+    min-height: 250px;
+    padding-left: 250px + $gutter;
+    position: relative;
+  }
+}
+
+.index__list__heading {
+  margin-bottom: $gutter--small/2;
+}
+
+.index__list__image {
+  left: 0;
+  position: absolute;
+  top: 0;
+}

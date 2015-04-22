@@ -1,0 +1,45 @@
+{% set defaultOptions = {
+  id: '',
+  label: '',
+  options: [],
+  required: false,
+  value: '',
+  error: false,
+  noMargin: false,
+  hideLabel: false,
+  container: 'li'
+} %}
+
+{% set options = defaultOptions | merge(options) %}
+
+{% set class = 'form__field' %}
+{% set class = options.error and options.error | length ? class ~ ' -error' : class %}
+{% set class = options.noMargin ? class ~ ' -no-margin' : class %}
+
+<{{ options.container }} class="{{ class }}">
+  <div class="fieldset">
+    <p 
+      class="label {% if options.hideLabel %}visuallyhidden{% endif %}">
+      {{ options.label | raw }}{% if options.required %}<abbr title="Required">*</abbr>{% endif %}
+    </p>
+
+    <ul class="form__list -split -with-margin">
+      {% for option in options.options %}
+        <li>
+          <label>
+            <input 
+              type="checkbox"
+              name="{{ options.id }}[]"
+              value="{{ option }}"
+              {% if option in options.value %}checked{% endif %} >
+                
+            {{ option }}
+          </label>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% if options.error %}
+    <p class="form__field__error">*You must pick from the options.</p>
+  {% endif %}
+</{{ options.container }}>

@@ -1,0 +1,26 @@
+{% set defaultOptions = {
+  image: false,
+  imageUrl: '',
+  imageAlign: 'center',
+  headline: ''
+} %}
+
+{% set options    = options is defined ? defaultOptions | merge(options) : defaultOptions %}
+{% set options = options|merge({
+  'headline'   : block['heroHeadline'] is defined ? block.heroHeadline : options.headline,
+  'image'      : block['heroBgImage'] is defined ? block.heroBgImage : options.image,
+  'imageAlign' : block['heroImageAlign'] is defined ? block.heroImageAlign : options.imageAlign
+}) %}
+{% set options = options|merge({
+  'imageUrl'   : options.image ? options.image.first().getURL('hero') : options.imageUrl
+}) %}
+
+<section 
+  class="module hero" 
+  style="background-image: url('{{ options.imageUrl }}'); background-position: {{ options.imageAlign }} top;" >
+  <div class="wrapper -padded">
+    <div class="hero__text-wrap">
+      <h1 class="heading--large--hero">{{ options.headline }}</h1>
+    </div>
+  </div>
+</section>

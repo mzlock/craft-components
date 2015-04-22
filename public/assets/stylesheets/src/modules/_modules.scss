@@ -1,0 +1,25 @@
+.module {
+  @include clear;
+  background-color: $theme--bg;
+  padding: $gutter 0;
+  position: relative;
+
+  &:nth-child(odd) {
+    background-color: $color--gray-1;
+  }
+}
+
+.module__title {
+  text-align: center;
+  margin-bottom: $gutter/2;
+}
+
+@include breakpoint($bp--medium) {
+  .module {
+    padding: $gutter*1.5 0;
+  }
+
+  .module__title {
+    margin-bottom: $gutter;
+  }
+}

@@ -1,0 +1,138 @@
+form {
+  @include clear;
+}
+
+label,
+legend,
+.label {
+  display: block;
+  line-height: 1;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+fieldset,
+.fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+
+  label {
+    display: inline-block;
+    margin-bottom: $gutter/2;
+    text-transform: none;
+
+    & + label {
+      margin-left: $gutter;
+    }
+  }
+
+  .form__list label {
+    margin: 0;
+  }
+}
+
+input[type="submit"] {
+  @include appearance(none);
+}
+
+// Listing specific inputs to style to avoid styling un-like inputs
+input[type="text"], 
+input[type="email"], 
+input[type="tel"], 
+input[type="password"],
+input[type="file"],
+input[type="number"],
+input[type="search"],
+textarea, 
+select {
+  background: #fff;
+  border: 3px solid $theme--copy;
+  border-radius: 0;
+  @include box-sizing(border-box);
+  color: $theme--copy;
+  margin: 0;
+  outline: none;
+  padding: 10px 15px;
+  width: 100%;
+
+  @include appearance(none);
+
+  &:focus {
+    border-color: $theme--links;
+    color: $theme--links;
+  }
+
+  /*
+   *  Alt input styles for "bright" sections in
+   *  mixins.scss with the bright-section mixin 
+   */
+
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="tel"], 
+input[type="password"],
+input[type="number"],
+input[type="search"],
+select {
+  height: 48px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 8px;
+
+  &.-disabled + span {
+    color: tint($theme--copy, 40%);
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+select {
+  background: #fff image-url('backgrounds/select.png') no-repeat 91% center;
+  line-height: 1.2;
+  padding: 10px 35px 10px 15px;
+  // make select arrow go out of the form__field.-select
+  width: 110%;
+  
+  // hide arrow in Firefox pre v30
+  -moz-appearance: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+
+  // hide arrow in IE10+
+  &::-ms-expand {
+    display: none;
+  }
+
+  @include breakpoint($bp--retina) {
+    background-image: image-url('backgrounds/select-retina.png');
+    background-size: image-width('backgrounds/select.png') image-height('backgrounds/select.png');
+  }
+
+  .old-ie & {
+    background: #fff;
+    width: 100%;
+  }
+}
+
+.form {
+  padding: $gutter*2 0;
+  text-align: center;
+
+  button[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    max-width: 400px;
+    width: 100%;
+  }
+}
+
+.form__section {
+  margin-bottom: $gutter*2;
+}

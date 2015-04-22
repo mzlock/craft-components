@@ -1,0 +1,41 @@
+{% set defaultOptions = {
+  id: '', 
+  label: '',
+  options: [],
+  required: false, 
+  value: '',
+  error: false,
+  noMargin: false,
+  hideLabel: false,
+  container: 'li'
+} %}
+
+{% set options = defaultOptions | merge(options) %}
+
+{% set class = 'form__field -select' %}
+{% set class = options.error and options.error | length ? class ~ ' -error' : class %}
+{% set class = options.noMargin ? class ~ ' -no-margin' : class %}
+{% set class = options.id == 'state' ? class ~ ' -state' : class %}
+
+<{{ options.container }} class="{{ class }}">
+  <label
+    {% if options.hideLabel %}class="visuallyhidden"{% endif %}
+    for="state">
+    {{ options.label | raw }}{% if options.required %}<abbr title="Required">*</abbr>{% endif %}
+  </label>
+
+  <select 
+    name="{{ options.id }}"
+    id="{{ options.id }}"
+    {% if options.required %}required{% endif %}>
+
+    {% for optVal, optText in options.options %}
+      <option 
+        value="{{ optVal }}" 
+        {% if options.value and optVal == options.value %}selected{% endif %}>
+          {{ optText }}
+      </option>
+    {% endfor %}
+
+  </select>
+</{{ options.container }}\>

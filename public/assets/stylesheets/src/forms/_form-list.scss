@@ -1,0 +1,53 @@
+.form__list {
+  @include clear;
+  @include ui-list;
+
+  &.-border {
+    > li {
+      border-bottom: 1px solid $theme--border;
+      margin-bottom: 0;
+      padding-top: $gutter;
+    }
+  }
+
+  &.-with-margin {
+    > li {
+      margin-bottom: $gutter/2;
+    }
+  }
+
+  @include breakpoint($bp--medium) {
+    &.-split {
+      > li {
+        @include two-col;
+      }
+
+      &.-border {
+        > li {
+          border-bottom: 1px solid transparent;
+          border-top: 1px solid transparent;
+          margin-bottom: -1px;
+
+          &:nth-child(odd) {
+            border-top-color: $theme--border;
+            border-right: 1px solid $theme--border;
+            padding-right: $gutter;
+          }
+
+          &:nth-child(even) {
+            border-bottom-color: $theme--border;
+            padding-left: $gutter;
+          }
+
+          &:first-child {
+            border-top-color: transparent;
+          }
+
+          &:last-child {
+            border-bottom-color: transparent;
+          }
+        }
+      }
+    }
+  }
+}

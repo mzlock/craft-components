@@ -1,0 +1,55 @@
+.module.body-copy {
+
+  * {
+    + h2,
+    + h3,
+    + h4,
+    + h5 {
+      margin-top: $gutter*1.5;
+    }
+  }
+
+  h2 {
+    @include heading--large;
+  }
+
+  h3 {
+    @include heading--medium;
+    text-align: center;
+  }
+
+  h4 {
+    @include heading--small;
+    margin-bottom: 5px;
+  }
+
+  h5 {
+    font-size: 1.1em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  ul,
+  ol {
+    margin-bottom: $gutter*1.5;
+    padding-left: $gutter;
+  }
+
+  li {
+    margin-bottom: $gutter--small;
+    margin-top: $gutter/2;
+    position: relative;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  ol {
+    counter-reset: ol-counter;
+  }
+
+  img {
+    margin-bottom: $gutter;
+  }
+}

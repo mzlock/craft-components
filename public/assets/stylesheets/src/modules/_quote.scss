@@ -1,0 +1,50 @@
+$quote--triangle-size: 20px;
+
+.module.quote {
+  background: $color--gray-4;
+  text-align: center;
+
+  // Some base blockquote styles are in elements.scss
+
+  .quote__body {
+    background: #fff;
+    margin-bottom: 50px;
+    padding-top: $gutter/2;
+    position: relative;
+
+    &:before {
+      @include generated-content(0, 0);
+      border-left: $quote--triangle-size solid transparent;
+      border-right: $quote--triangle-size solid transparent;
+      border-top: $quote--triangle-size solid #fff;
+      height: 0; 
+      left: 50%;
+      margin-left: -$quote--triangle-size;
+      top: 100%;
+      width: 0;
+    }
+
+    &:after {
+      @include generated-content(0, 0);
+      content: '”';
+      font-size: 28px;
+      height: $quote--triangle-size;
+      left: 50%;
+      margin-left: -$quote--triangle-size/2;
+      position: absolute;
+      text-align: center;
+      top: 100%;
+      width: $quote--triangle-size;
+    }
+  }
+
+  .quote__attribution {
+    text-align: center;
+  }
+
+  @include breakpoint($bp--medium) {
+    .quote__body {
+      padding: $gutter*1.5 0 $gutter/2;
+    } 
+  }
+}

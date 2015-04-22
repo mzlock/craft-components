@@ -1,0 +1,54 @@
+{% if paginate %}
+
+  {% set currentPage = paginate.currentPage %}
+  {% set startPage = currentPage - 2 %}
+  {% set endPage = currentPage + 2 %}
+  {% if query is defined %}
+    {% set queryString = "?q=" ~ query %}
+  {% endif %}
+
+
+  {% if paginate.totalPages > 1 %}
+    <nav class="pagination" role="navigation">
+
+      {% if paginate.prevUrl %}
+        <a href="{{ paginate.prevUrl }}{% if queryString is defined %}{{ queryString }}{% endif %}">
+          &larr;
+          <span class="visuallyhidden">Previous Page</span>
+        </a>
+      {% endif %}
+
+      <ol class="pagination__list">
+        {% for i in startPage..endPage %}
+          {% if paginate.getPageUrl( i ) %}
+            {% if i != currentPage %}
+
+              <li>
+                <a class="button" href="{{ paginate.getPageUrl( i ) }}{% if queryString is defined %}{{ queryString }}{% endif %}">
+                  <span class="visuallyhidden">Page </span>{{ i }}
+                </a>
+              </li>
+
+            {% else %}
+
+              <li class="-current">
+                <span class="visuallyhidden">Current Page </span>{{ i }}
+              </li>
+
+            {% endif %}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ol>
+
+      {% if paginate.nextUrl %}
+        <a href="{{ paginate.nextUrl }}{% if queryString is defined %}{{ queryString }}{% endif %}">
+          <span class="visuallyhidden">Next Page</span>
+          &rarr;
+        </a>
+      {% endif %}
+      
+    </nav>
+  {% endif %}
+
+{% endif %}

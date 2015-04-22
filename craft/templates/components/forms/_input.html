@@ -1,0 +1,42 @@
+{% set defaultOptions = {
+  id: '',
+  name: '',
+  label: '',
+  required: false, 
+  value: '',
+  error: false,
+  noMargin: false,
+  hideLabel: false,
+  type: 'text',
+  container: 'li', 
+  array: false
+} %}
+
+{% set options = defaultOptions | merge(options) %}
+{% set name    = options.name == '' ? options.id : options.name %}
+{% set options = options|merge({'name': name}) %}
+
+{% set class = 'form__field' %}
+{% set class = options.error and options.error | length ? class ~ ' -error' : class %}
+{% set class = options.noMargin ? class ~ ' -no-margin' : class %}
+{% set class = options.id == 'city' ? class ~ ' -city' : class %}
+
+<{{ options.container }} class="{{ class }}">
+  <label 
+    {% if options.hideLabel %}class="visuallyhidden"{% endif %}
+    for="{{ options.id }}">
+    {{ options.label | raw }}{% if options.required %}<abbr title="Required">*</abbr>{% endif %}
+  </label>
+
+  <input 
+    type="{{ options.type }}"
+    name="{{ options.name }}{% if options.array %}[]{% endif %}"
+    id="{{ options.id }}"
+    {% if options.required %}required{% endif %}
+    value="{{ options.value }}"
+    >
+
+  {% if options.error and options.error | length %}
+    <p class="form__field__error">*{{ options.error }}</p>
+  {% endif %}
+</{{ options.container }}>

@@ -5,7 +5,7 @@ $lineheight--default: (26/16);
 @mixin heading--large {
   color: $theme--primary;
   font-size: 1.6em;
-  font-weight: normal;
+  font-weight: bold;
   line-height: 1.2;
   text-align: center;
 
@@ -17,9 +17,8 @@ $lineheight--default: (26/16);
 @mixin heading--medium {
   color: $theme--copy;
   font-size: 1.3em;
-  font-weight: normal;
+  font-weight: bold;
   letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
 @mixin heading--small {
@@ -68,8 +67,13 @@ h6 {
   @include heading--medium;
 }
 
-.heading--large {
+.heading--large,
+.heading--large--hero {
   @include heading--large;
+}
+
+.heading--large--hero {
+  color: #fff;
 }
 
 .tagline {

@@ -18,12 +18,18 @@ body {
   max-width: $default-wrapper-width;
   width: 100%;
 
+  &.-thin {
+    max-width: 620px;
+  }
+
   &.-padded {
     padding-left: $gutter--small;
     padding-right: $gutter--small;
   }
+}
 
-  @include breakpoint($bp--medium) {
+@include breakpoint($bp--medium) {
+  .wrapper {
     // even normal wrapper should have padding now
     &,
     &.-padded {

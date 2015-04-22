@@ -1,0 +1,74 @@
+.form__field {
+  clear: both;
+  margin-bottom: $gutter--large;
+  position: relative;
+  text-align: left;
+}
+
+.form__field.-no-margin {
+  margin-bottom: 10px;
+}
+
+.form__field.-select {
+  // cut off selects which are 
+  // > 100% width to hide arrow
+  overflow: hidden;
+  position: relative;
+
+  // re-add right border of input, since it's cut off
+  &:after {
+    @include generated-content(0px, 48px);
+    border-right: 3px solid $theme--copy;
+    right: 0;
+    bottom: 0;
+  }
+
+  &.-focused:after {
+    border-color: $theme--copy;
+  }
+}
+
+.form__field {
+  @include breakpoint($bp--medium) {
+    &.-city {
+      float: left;
+      margin-right: 2%;
+      width: 68%;
+    }
+
+    &.-state {
+      clear: none;
+      float: right;
+      width: 30%;
+    }
+  }
+}
+
+
+// Errors
+.form__field.-error {
+  label,
+  .label {
+    color: $theme--alert;
+  }
+
+  input[type="text"], 
+  input[type="email"], 
+  input[type="tel"], 
+  input[type="password"],
+  input[type="file"],
+  input[type="number"],
+  input[type="search"],
+  textarea, 
+  select,
+  &.-select:after,
+  .-select:after {
+    border-color: $theme--alert;
+  }
+}
+
+.form__field__error {
+  color: $theme--alert;
+  font-size: 0.85em;
+  margin-bottom: 0;
+}

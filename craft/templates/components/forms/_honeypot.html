@@ -1,0 +1,7 @@
+{% set container = container | default('li') %}
+
+<{{ container }} class="visuallyhidden">
+  <label for="honeypot">Checking</label>
+  <p>Leave blank if you are not a robot.</p>
+  <input type="text" name="honeypot" id="honeypot">
+</{{ container }}>

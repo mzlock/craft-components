@@ -1,0 +1,12 @@
+{% extends "_layout" %}
+{% set title = entry.title %}
+{% set params = { descendantOf: entry } %}
+
+{% block content %}
+  <article>
+    {% include 'components/_page-header' with { options: { 
+      title: title
+    } } %}
+
+  </article>
+{% endblock %}
